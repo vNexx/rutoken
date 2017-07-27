@@ -88,18 +88,18 @@ int main()
 		**********************************************************************/
 		Pkcs10RequestInfo info;
 		
-		char OID[] = "1.3.6.1.5.5.7.10";					  //OID расширения для шаблона сертификата		
-		unsigned char customExtensionASN1Data[] = {           //ANS1 structure OID, templateVersion
-			0x30, 0x15, 0x80, 0x10, 0x31, 0x2E, 0x33, 0x2E,
-			0x36, 0x2E, 0x31, 0x2E, 0x35, 0x2E, 0x35, 0x2E, 
-			0x37, 0x2E, 0x31, 0x30, 0x81, 0x01, 0x03,
+		char OID[] = "1.3.6.1.4.1.311.21.7";					  //OID расширения для шаблона сертификата		
+		unsigned char customExtensionASN1Data[] = {				 //ANS1 structure OID, templateVersion
+			0x30, 0x11, 0x80, 0x09, 0x2B, 0x06, 0x01, 0x04,
+			0x01, 0x82, 0x37, 0x15, 0x07, 0x81, 0x01, 0x01,
+			0x82, 0x01, 0x02,
 		};
 
 		info.setSubject(move(subject))
 		.setExtension(move(keyUsage));
 
 		info.setCustomExtension(OID, customExtensionASN1Data, sizeof(customExtensionASN1Data), false);
-
+		 
 		/**********************************************************************
 		* Создаем PKCS#10 запрос на получение сертификата.                    *
 		**********************************************************************/
